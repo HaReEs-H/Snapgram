@@ -2,7 +2,7 @@ import { INewUser } from '@/types'
 import { ID } from 'appwrite'
 import appwriteConfig, { account, avatars, databases } from './config'
 
-const createUserAccount = async (user: INewUser) => {
+export async function createUserAccount(user: INewUser) {
   try {
     const newAccount = await account.create(
       ID.unique(),
@@ -26,8 +26,6 @@ const createUserAccount = async (user: INewUser) => {
   }
 }
 
-export default createUserAccount
-
 export async function saveUserToDB(user: {
   accountId: string
   email: string
@@ -43,6 +41,15 @@ export async function saveUserToDB(user: {
       user
     )
     return newUser
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export async function signInAccount(user: { emai: string; password: string }) {
+  try {
+    const session = await account.createEmailSession(user.email, user.password)
+    return session
   } catch (err) {
     console.log(err)
   }
