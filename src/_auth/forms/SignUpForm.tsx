@@ -30,6 +30,7 @@ function SignUpForm() {
     useSignAccount()
 
   const navigate = useNavigate()
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
