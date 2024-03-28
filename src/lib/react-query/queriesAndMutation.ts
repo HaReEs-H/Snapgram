@@ -9,7 +9,7 @@ import {
   signInAccount,
   signOutAccount,
 } from '../appwrite/api'
-import { INewUser } from '@/types'
+import { INewPost, INewUser } from '@/types'
 
 export const useCreateUserAccount = () => {
   return useMutation({
